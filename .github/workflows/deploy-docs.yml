@@ -19,13 +19,9 @@ jobs:
           cmd: install --force
 
       - name: Build Storybook
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: build-storybook
+        run: npm run build-storybook
 
-      - name: Build Storybook
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: deploy-storybook -- --ci --existing-output-dir=storybook-static
+      - name: Deploy Storybook
+        run: npm run deploy-storybook -- --ci --existing-output-dir=storybook-static
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
